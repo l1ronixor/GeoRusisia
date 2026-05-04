@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GeoRussia — угадай место в России</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="topbar">
+        <h1>GeoRussia</h1>
+        <p>Угадай место в России по осмотру местности. Режим без подсказок.</p>
+      </header>
+      <section class="difficulty-card">
+        <p class="difficulty-title">Выбери сложность перед стартом:</p>
+        <div class="difficulty-buttons">
+          <button class="difficulty-btn" type="button" data-difficulty="easy">
+            Легкий
+          </button>
+          <button class="difficulty-btn" type="button" data-difficulty="medium">
+            Средний
+          </button>
+          <button class="difficulty-btn" type="button" data-difficulty="hard">
+            Сложный
+          </button>
+        </div>
+        <p id="difficulty-info">Сложность не выбрана.</p>
+      </section>
+      <section class="game-layout">
+        <section class="clue-card">
+          <div class="round-info">
+            <span id="round">Раунд 0 / 5</span>
+            <span id="score">Очки: 0</span>
+          </div>
+          <div class="panorama-wrap">
+            <iframe
+              id="panorama-frame"
+              title="Google Street View"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+            <div
+              class="panorama-address-mask"
+              aria-hidden="true"
+              title=""
+            ></div>
+          </div>
+          <div class="panorama-actions">
+            <button id="panorama-retry-btn" type="button" class="action-secondary">
+              Нет панорамы — другая точка рядом
+            </button>
+            <button id="panorama-link" type="button" class="action-link">
+              Открыть Google Панорамы в новой вкладке
+            </button>
+          </div>
+          <p id="clue-text"></p>
+        </section>
+        <section class="map-card">
+          <div class="map-search">
+            <label class="map-search-label" for="city-search">Поиск города</label>
+            <div class="map-search-row">
+              <input
+                id="city-search"
+                class="map-search-input"
+                type="search"
+                placeholder="Например: Пермь, Сочи…"
+                autocomplete="off"
+                spellcheck="false"
+              />
+              <button id="city-search-btn" type="button" class="map-search-btn">
+                На карте
+              </button>
+            </div>
+            <p id="map-search-status" class="map-search-status" aria-live="polite"></p>
+          </div>
+          <div id="map"></div>
+          <div class="buttons">
+            <button id="start-btn">Начать игру</button>
+            <button id="guess-btn" disabled>Подтвердить выбор</button>
+            <button id="next-btn" disabled>Следующий раунд</button>
+          </div>
+          <p id="message" class="message">
+            Нажми «Начать игру», чтобы получить первую локацию.
+          </p>
+        </section>
+      </section>
+    </main>
+    <section id="end-screen" class="end-screen" hidden>
+      <div class="end-screen-content">
+        <h2 id="end-result" class="end-result">WIN</h2>
+        <div class="end-actions">
+          <button id="overlay-restart-btn" type="button">Рестарт</button>
+          <button id="overlay-back-btn" type="button">Вернуться</button>
+        </div>
+      </div>
+    </section>
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
